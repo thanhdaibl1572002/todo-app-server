@@ -12,7 +12,8 @@ import todoRouter from '@/routes/todo.route'
 config()
 
 const app = express()
-const PORT = process.env.PORT
+const PORT = 8080
+const MONGO_DB_URL = 'mongodb+srv://truongthanhdai:qPyC12NZmVI2QjF0@project-database.jfaq7f0.mongodb.net/?retryWrites=true&w=majority'
 
 app.use(json())
 app.use(urlencoded({ extended: false }))
@@ -24,7 +25,7 @@ app.use(cookieParser())
 // Route
 app.use('/api', todoRouter)
 
-connect(process.env.MONGO_CONNECTION_STRING as string)
+connect(MONGO_DB_URL)
 .then(() => app.listen(
     PORT, 
     () => console.log(`Application listening at http://localhost:${PORT}`)))
