@@ -1,5 +1,5 @@
 import 'tsconfig-paths/register'
-import express from 'express'
+import express, { Request, Response } from 'express'
 import { json, urlencoded } from 'body-parser'
 import cors from 'cors'
 import helmet from 'helmet'
@@ -22,6 +22,7 @@ app.use(morgan('dev'))
 app.use(cookieParser())
 
 // Route
+app.get('/', (req: Request, res: Response) => res.send('Successfully deployed'))
 app.use('/api', todoRouter)
 
 connect(process.env.MONGO_CONNECTION_STRING as string)
@@ -32,3 +33,4 @@ connect(process.env.MONGO_CONNECTION_STRING as string)
     console.log(error)
     process.exit(1)
 })
+
